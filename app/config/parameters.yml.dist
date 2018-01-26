@@ -20,5 +20,6 @@ parameters:
 
     jwt_ttl: 3600
 
-    upload_path: 'Resources/blogHeadImg
+    upload_path: 'Resources/blogHeadImg'
+
 

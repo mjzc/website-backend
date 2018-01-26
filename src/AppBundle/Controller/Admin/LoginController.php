@@ -76,7 +76,7 @@ class LoginController extends APIResponseGenerator
         if (is_null($res)) {
             return $this->generateResponseData(APIResponseCode::CODE_AUTH_INFO_INVALID);
         }
-        $imgSrc = 'http://127.0.0.1:8000/Resources/blogHeadImg/'.$res->getBlogHeadImg();
+        $imgSrc = 'http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER["SERVER_PORT"].'/'.$this->getParameter('upload_path').'/'.$res->getBlogHeadImg();
         $res->setBlogHeadImg($imgSrc);
         return new JsonResponse($res);
     }
