@@ -108,8 +108,8 @@ class ArticleController extends Controller
         }
 
         $res = $this->getDoctrine()->getRepository('AppBundle:Articles')->searchArticlesByTitleClass($searchStr, $pageNum, $pageSize);
-
-        return new JsonResponse(['code' => '200', 'list' => $res]);
+        $counts = count($res);
+        return new JsonResponse(['code' => '200','counts' => $counts, 'list' => $res]);
     }
 
     /**
@@ -136,6 +136,7 @@ class ArticleController extends Controller
             return new JsonResponse(['code' => '40030', 'msg' => '不存在文章']);
         }
         $res = $this->getDoctrine()->getRepository('AppBundle:Articles')->find($id);
+        $counts = count($res);
 
         return new JsonResponse(['code' => '200', 'result' => $res]);
     }
