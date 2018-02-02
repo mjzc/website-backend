@@ -14,4 +14,5 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
+/src/AppBundle/Entity/*.php~
 .DS_Store
