@@ -76,7 +76,7 @@ class LoginController extends APIResponseGenerator
         if (is_null($res)) {
             return $this->generateResponseData(APIResponseCode::CODE_AUTH_INFO_INVALID);
         }
-        $imgSrc = 'http://aoyi.zeroyc.me/blog-admin/'.$this->getParameter('upload_path').'/'.$res->getBlogHeadImg();
+        $imgSrc = $this.$this->getParameter('access_frontend_home').$this->getParameter('upload_path').'/'.$res->getBlogHeadImg();
         $res->setBlogHeadImg($imgSrc);
         return new JsonResponse($res);
     }
@@ -140,9 +140,8 @@ class LoginController extends APIResponseGenerator
         // 判断图片是否存在
         if (!file_exists($upload_path.$_FILES['file']['name'])) {
             var_dump(1);
-            $isMove = move_uploaded_file($_FILES["file"]["tmp_name"],$upload_path.'/'.$_FILES['file']['name']);
+            $isMove = move_uploaded_file($_FILES["file"]["tmp_name"],$this.$this->getParameter('access_backend_home') . $upload_path.'/'.$_FILES['file']['name']);
         }
-        var_dump($upload_path.'/'.$_FILES['file']['name']);
         // 判断文件是否保存
         if($isMove) {
             return $this->generateResponseData(APIResponseCode::CODE_SUCCESS);
@@ -159,20 +158,17 @@ class LoginController extends APIResponseGenerator
     {
 
 //        if(getenv('HTTP_CLIENT_IP') && strcasecmp(getenv('HTTP_CLIENT_IP'), 'unknown')) {
-//            var_dump(1);
 //            $ip = getenv('HTTP_CLIENT_IP');
 //        } elseif(getenv('HTTP_X_FORWARDED_FOR') && strcasecmp(getenv('HTTP_X_FORWARDED_FOR'), 'unknown')) {
-//            var_dump(2);
 //            $ip = getenv('HTTP_X_FORWARDED_FOR');
 //        } elseif(getenv('REMOTE_ADDR') && strcasecmp(getenv('REMOTE_ADDR'), 'unknown')) {
-//            var_dump(3);
 //            $ip = getenv('REMOTE_ADDR');
 //        } elseif(isset($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] && strcasecmp($_SERVER['REMOTE_ADDR'], 'unknown')) {
-//            var_dump(4);
 //            $ip = $_SERVER['REMOTE_ADDR'];
 //        }
 //        $cip =  preg_match ( '/[\d\.]{7,15}/', $ip, $matches ) ? $matches [0] : '';
 
+        var_dump(2);
         $ak = 'SQ5dEOZP2tTj4apHNGQ4IsgoG2Y7qv54';
         $url = 'http://api.map.baidu.com/location/ip?ak=' .$ak. '&coor=bd09ll';
         $address_data = file_get_contents($url);
