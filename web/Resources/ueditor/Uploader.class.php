@@ -296,7 +296,8 @@ var_dump(2);
     private function getFilePath()
     {
         $fullname = $this->fullName;
-        $rootPath = $_SERVER['DOCUMENT_ROOT'];
+//            $rootPath = $_SERVER['DOCUMENT_ROOT'];
+        $rootPath = dirname(__FILE__) . '/../../Resources/';
         if (substr($fullname, 0, 1) != '/') {
             $fullname = '/' . $fullname;
         }
