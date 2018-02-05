@@ -134,12 +134,15 @@ class LoginController extends APIResponseGenerator
         }
         // 判断存图片的文件夹是否存在
         if(!file_exists($upload_path)) {
+            var_dump(2);
             mkdir ($upload_path,0777,true);
         }
         // 判断图片是否存在
         if (!file_exists($upload_path.$_FILES['file']['name'])) {
+            var_dump(1);
             $isMove = move_uploaded_file($_FILES["file"]["tmp_name"],$upload_path.'/'.$_FILES['file']['name']);
         }
+        var_dump($upload_path.'/'.$_FILES['file']['name']);
         // 判断文件是否保存
         if($isMove) {
             return $this->generateResponseData(APIResponseCode::CODE_SUCCESS);
