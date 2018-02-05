@@ -69,6 +69,7 @@ class Uploader
      */
     private function upFile()
     {
+
         $file = $this->file = $_FILES[$this->fileField];
         if (!$file) {
             $this->stateInfo = $this->getStateInfo("ERROR_FILE_NOT_FOUND");
@@ -84,6 +85,7 @@ class Uploader
             $this->stateInfo = $this->getStateInfo("ERROR_TMPFILE");
             return;
         }
+        var_dump($file);
         $this->oriName = $file['name'];
         $this->fileSize = $file['size'];
         $this->fileType = $this->getFileExt();
@@ -96,11 +98,13 @@ class Uploader
             $this->stateInfo = $this->getStateInfo("ERROR_SIZE_EXCEED");
             return;
         }
+        var_dump(1);
         //检查是否不允许的文件格式
         if (!$this->checkType()) {
             $this->stateInfo = $this->getStateInfo("ERROR_TYPE_NOT_ALLOWED");
             return;
         }
+        var_dump(2);
         //创建目录失败
         if (!file_exists($dirname) && !mkdir($dirname, 0777, true)) {
             $this->stateInfo = $this->getStateInfo("ERROR_CREATE_DIR");
@@ -109,6 +113,8 @@ class Uploader
             $this->stateInfo = $this->getStateInfo("ERROR_DIR_NOT_WRITEABLE");
             return;
         }
+        var_dump($file["tmp_name"]);
+
         //移动文件
         if (!(move_uploaded_file($file["tmp_name"], $this->filePath) && file_exists($this->filePath))) { //移动失败
             $this->stateInfo = $this->getStateInfo("ERROR_FILE_MOVE");
