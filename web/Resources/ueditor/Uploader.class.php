@@ -102,9 +102,10 @@ class Uploader
             $this->stateInfo = $this->getStateInfo("ERROR_TYPE_NOT_ALLOWED");
             return;
         }
+
         var_dump($dirname);
         var_dump(!file_exists($dirname));
-        var_dump($file["tmp_name"]);
+
         //创建目录失败
         if (!file_exists($dirname) && !mkdir($dirname, 0777, true)) {
             $this->stateInfo = $this->getStateInfo("ERROR_CREATE_DIR");
@@ -280,6 +281,7 @@ var_dump(2);
         } else {
             $ext = $this->getFileExt();
         }
+        var_dump($format . $ext);
         return $format . $ext;
     }
     /**
@@ -297,7 +299,8 @@ var_dump(2);
     {
         $fullname = $this->fullName;
 //            $rootPath = $_SERVER['DOCUMENT_ROOT'];
-        $rootPath = dirname(__FILE__) . '/../../Resources/';
+//        $rootPath = dirname(__FILE__) . '/../../Resources/';
+        $rootPath='/home/webmaster/git_projects/aoyi-blog-admin-api/web/';
         if (substr($fullname, 0, 1) != '/') {
             $fullname = '/' . $fullname;
         }
