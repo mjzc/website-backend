@@ -24,7 +24,7 @@ parameters:
 
     ak: 'SQ5dEOZP2tTj4apHNGQ4IsgoG2Y7qv54'
 
-    access_backend_home: 'http://aoyi.zeroyc.me/aoyi-blog-admin-api/'
+    access_backend_home: 'aoyi.zeroyc.me/aoyi-blog-admin-api/'
 
 
-    access_frontend_home: 'http://aoyi.zeroyc.me/blog-admin/'
+    access_frontend_home: 'aoyi.zeroyc.me/blog-admin/'
