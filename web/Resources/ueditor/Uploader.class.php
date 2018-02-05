@@ -102,6 +102,9 @@ class Uploader
             $this->stateInfo = $this->getStateInfo("ERROR_TYPE_NOT_ALLOWED");
             return;
         }
+        var_dump($dirname);
+        var_dump(!file_exists($dirname));
+        var_dump($file["tmp_name"]);
         //创建目录失败
         if (!file_exists($dirname) && !mkdir($dirname, 0777, true)) {
             $this->stateInfo = $this->getStateInfo("ERROR_CREATE_DIR");
@@ -113,8 +116,10 @@ class Uploader
 
         //移动文件
         if (!(move_uploaded_file($file["tmp_name"], $this->filePath) && file_exists($this->filePath))) { //移动失败
+var_dump(2);
             $this->stateInfo = $this->getStateInfo("ERROR_FILE_MOVE");
         } else { //移动成功
+            var_dump(3);
             $this->stateInfo = $this->stateMap[0];
         }
     }
