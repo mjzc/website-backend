@@ -149,7 +149,7 @@ class LoginController extends APIResponseGenerator
     }
     /**
      * 获取地址
-     * @Route("/web_getCityAPIg")
+     * @Route("/web_getCityAPI")
      * @Method("GET")
      */
     public function getAddress ()
