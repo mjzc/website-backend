@@ -149,10 +149,11 @@ class LoginController extends APIResponseGenerator
     }
     /**
      * 获取地址
-     * @Route("/web_getCityAPI")
+     * @Route("/web_getCityAPIg")
      * @Method("GET")
      */
-    public function getAddress () {
+    public function getAddress ()
+    {
 
 //        if(getenv('HTTP_CLIENT_IP') && strcasecmp(getenv('HTTP_CLIENT_IP'), 'unknown')) {
 //            var_dump(1);
