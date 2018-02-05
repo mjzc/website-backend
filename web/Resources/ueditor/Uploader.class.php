@@ -199,22 +199,18 @@ class Uploader
         $this->filePath = $this->getFilePath();
         $this->fileName = $this->getFileName();
         $dirname = dirname($this->filePath);
-        var_dump($dirname);
         //检查文件大小是否超出限制
         if (!$this->checkSize()) {
-            var_dump(1);
             $this->stateInfo = $this->getStateInfo("ERROR_SIZE_EXCEED");
             return;
         }
         //检查文件内容是否真的是图片
         if (substr(mime_content_type($this->filePath), 0, 5) != 'image') {
-            var_dump(2);
             $this->stateInfo = $this->getStateInfo("ERROR_TYPE_NOT_ALLOWED");
             return;
         }
         //创建目录失败
         if (!file_exists($dirname) && !mkdir($dirname, 0777, true)) {
-            var_dump(3);
             $this->stateInfo = $this->getStateInfo("ERROR_CREATE_DIR");
             return;
         } else if (!is_writeable($dirname)) {
@@ -223,10 +219,8 @@ class Uploader
         }
         //移动文件
         if (!(file_put_contents($this->filePath, $img) && file_exists($this->filePath))) { //移动失败
-            var_dump(4);
             $this->stateInfo = $this->getStateInfo("ERROR_WRITE_CONTENT");
         } else { //移动成功
-            var_dump(5);
             $this->stateInfo = $this->stateMap[0];
         }
     }
