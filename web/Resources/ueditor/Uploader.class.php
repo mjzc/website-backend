@@ -103,8 +103,6 @@ class Uploader
             return;
         }
 
-        var_dump($dirname);
-        var_dump(!file_exists($dirname));
 
         //创建目录失败
         if (!file_exists($dirname) && !mkdir($dirname, 0777, true)) {
@@ -117,10 +115,8 @@ class Uploader
 
         //移动文件
         if (!(move_uploaded_file($file["tmp_name"], $this->filePath) && file_exists($this->filePath))) { //移动失败
-var_dump(2);
             $this->stateInfo = $this->getStateInfo("ERROR_FILE_MOVE");
         } else { //移动成功
-            var_dump(3);
             $this->stateInfo = $this->stateMap[0];
         }
     }
@@ -281,7 +277,6 @@ var_dump(2);
         } else {
             $ext = $this->getFileExt();
         }
-        var_dump($format . $ext);
         return $format . $ext;
     }
     /**
@@ -300,7 +295,7 @@ var_dump(2);
         $fullname = $this->fullName;
 //            $rootPath = $_SERVER['DOCUMENT_ROOT'];
 //        $rootPath = dirname(__FILE__) . '/../../Resources/';
-        $rootPath='/home/webmaster/git_projects/aoyi-blog-admin-api/web/';
+        $rootPath='/home/webmaster/git_projects/aoyi-blog-admin-api/web';
         if (substr($fullname, 0, 1) != '/') {
             $fullname = '/' . $fullname;
         }
