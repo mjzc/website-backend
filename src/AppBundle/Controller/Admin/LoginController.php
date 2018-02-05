@@ -76,7 +76,7 @@ class LoginController extends APIResponseGenerator
         if (is_null($res)) {
             return $this->generateResponseData(APIResponseCode::CODE_AUTH_INFO_INVALID);
         }
-        $imgSrc = $this.$this->getParameter('access_frontend_home').$this->getParameter('upload_path').'/'.$res->getBlogHeadImg();
+        $imgSrc = $this->getParameter('access_frontend_home').$this->getParameter('upload_path').'/'.$res->getBlogHeadImg();
         $res->setBlogHeadImg($imgSrc);
         return new JsonResponse($res);
     }
@@ -140,7 +140,7 @@ class LoginController extends APIResponseGenerator
         // 判断图片是否存在
         if (!file_exists($upload_path.$_FILES['file']['name'])) {
             var_dump(1);
-            $isMove = move_uploaded_file($_FILES["file"]["tmp_name"],$this.$this->getParameter('access_backend_home') . $upload_path.'/'.$_FILES['file']['name']);
+            $isMove = move_uploaded_file($_FILES["file"]["tmp_name"],$this->getParameter('access_backend_home') . $upload_path.'/'.$_FILES['file']['name']);
         }
         // 判断文件是否保存
         if($isMove) {
