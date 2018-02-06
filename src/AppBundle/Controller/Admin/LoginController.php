@@ -155,23 +155,23 @@ class LoginController extends APIResponseGenerator
     public function getAddress ()
     {
 
-//        if(getenv('HTTP_CLIENT_IP') && strcasecmp(getenv('HTTP_CLIENT_IP'), 'unknown')) {
-//            var_dump(1);
-//            $ip = getenv('HTTP_CLIENT_IP');
-//        } elseif(getenv('HTTP_X_FORWARDED_FOR') && strcasecmp(getenv('HTTP_X_FORWARDED_FOR'), 'unknown')) {
-//            var_dump(2);
-//            $ip = getenv('HTTP_X_FORWARDED_FOR');
-//        } elseif(getenv('REMOTE_ADDR') && strcasecmp(getenv('REMOTE_ADDR'), 'unknown')) {
-//            var_dump(3);
-//            $ip = getenv('REMOTE_ADDR');
-//        } elseif(isset($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] && strcasecmp($_SERVER['REMOTE_ADDR'], 'unknown')) {
-//            var_dump(4);
-//            $ip = $_SERVER['REMOTE_ADDR'];
-//        }
-//        $cip =  preg_match ( '/[\d\.]{7,15}/', $ip, $matches ) ? $matches [0] : '';
+        if(getenv('HTTP_CLIENT_IP') && strcasecmp(getenv('HTTP_CLIENT_IP'), 'unknown')) {
+            var_dump(1);
+            $ip = getenv('HTTP_CLIENT_IP');
+        } elseif(getenv('HTTP_X_FORWARDED_FOR') && strcasecmp(getenv('HTTP_X_FORWARDED_FOR'), 'unknown')) {
+            var_dump(2);
+            $ip = getenv('HTTP_X_FORWARDED_FOR');
+        } elseif(getenv('REMOTE_ADDR') && strcasecmp(getenv('REMOTE_ADDR'), 'unknown')) {
+            var_dump(3);
+            $ip = getenv('REMOTE_ADDR');
+        } elseif(isset($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] && strcasecmp($_SERVER['REMOTE_ADDR'], 'unknown')) {
+            var_dump(4);
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+        $cip =  preg_match ( '/[\d\.]{7,15}/', $ip, $matches ) ? $matches [0] : '';
 
         $ak = 'SQ5dEOZP2tTj4apHNGQ4IsgoG2Y7qv54';
-        $url = 'http://api.map.baidu.com/location/ip?ak=' .$ak. '&coor=bd09ll';
+        $url = 'https://api.map.baidu.com/location/ip?ak=' .$ak. '&ip='.$cip . '&coor=bd09ll';
         $address_data = file_get_contents($url);
         $json_data = json_decode($address_data);
         return new JsonResponse($json_data);
