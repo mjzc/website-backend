@@ -122,15 +122,15 @@ class LoginController extends APIResponseGenerator
         $isMove = false;
         $upload_path = $this->getParameter('upload_path');
         if (!in_array($imgType,$type)) {
-            return $this->generateResponseData(APIResponseCode::CODE_AUTH_INFO_INVALID);
+            return new JsonResponse(['code' => '400', 'msg' => '上传的图片类型错误']);
         }
         if ($imgSize > $size) {
-            return $this->generateResponseData(APIResponseCode::CODE_AUTH_INFO_INVALID);
+            return new JsonResponse(['code' => '400', 'msg' => '上传的图片过大']);
         }
         // 判断是否是通过HTTP POST上传的
         if(!is_uploaded_file($_FILES['file']['tmp_name'])){
             // 如果不是通过HTTP POST上传的
-            return ;
+            return new JsonResponse(['code' => '400', 'msg' => '不是通过post上传的']);
         }
         // 判断存图片的文件夹是否存在
         if(!file_exists($upload_path)) {
@@ -147,7 +147,7 @@ class LoginController extends APIResponseGenerator
         if($isMove) {
             return $this->generateResponseData(APIResponseCode::CODE_SUCCESS);
         }else{
-            return $this->generateResponseData(APIResponseCode::CODE_INTERNAL_SERVER_ERROR);
+            return new JsonResponse(['code' => '400', 'msg' => '请重新上传']);
         }
     }
     /**
