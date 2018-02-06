@@ -155,28 +155,27 @@ class LoginController extends APIResponseGenerator
     public function getAddressByip ()
     {
 
-//        if(getenv('HTTP_CLIENT_IP') && strcasecmp(getenv('HTTP_CLIENT_IP'), 'unknown')) {
-//            $ip = getenv('HTTP_CLIENT_IP');
-//        } elseif(getenv('HTTP_X_FORWARDED_FOR') && strcasecmp(getenv('HTTP_X_FORWARDED_FOR'), 'unknown')) {
-//            $ip = getenv('HTTP_X_FORWARDED_FOR');
-//        } elseif(getenv('REMOTE_ADDR') && strcasecmp(getenv('REMOTE_ADDR'), 'unknown')) {
-//            $ip = getenv('REMOTE_ADDR');
-//        } elseif(isset($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] && strcasecmp($_SERVER['REMOTE_ADDR'], 'unknown')) {
-//            $ip = $_SERVER['REMOTE_ADDR'];
-//        }
-//        $cip =  preg_match ( '/[\d\.]{7,15}/', $ip, $matches ) ? $matches [0] : '';
-//
-//        $ak = 'SQ5dEOZP2tTj4apHNGQ4IsgoG2Y7qv54';
-//        if ($cip == '127.0.0.1'){
-//            $url = 'https://api.map.baidu.com/location/ip?ak=' .$ak . '&coor=bd09ll';
-//        }else {
-//            $url = 'https://api.map.baidu.com/location/ip?ak=' .$ak. '&ip='.$cip . '&coor=bd09ll';
-//        }
-//        $address_data = file_get_contents($url);
-//        $json_data = json_decode($address_data);
-//        return new JsonResponse($json_data);
+        if(getenv('HTTP_CLIENT_IP') && strcasecmp(getenv('HTTP_CLIENT_IP'), 'unknown')) {
+            $ip = getenv('HTTP_CLIENT_IP');
+        } elseif(getenv('HTTP_X_FORWARDED_FOR') && strcasecmp(getenv('HTTP_X_FORWARDED_FOR'), 'unknown')) {
+            $ip = getenv('HTTP_X_FORWARDED_FOR');
+        } elseif(getenv('REMOTE_ADDR') && strcasecmp(getenv('REMOTE_ADDR'), 'unknown')) {
+            $ip = getenv('REMOTE_ADDR');
+        } elseif(isset($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] && strcasecmp($_SERVER['REMOTE_ADDR'], 'unknown')) {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+        $cip =  preg_match ( '/[\d\.]{7,15}/', $ip, $matches ) ? $matches [0] : '';
 
-                return new JsonResponse(['code'=>200]);
+        $ak = 'SQ5dEOZP2tTj4apHNGQ4IsgoG2Y7qv54';
+        if ($cip == '127.0.0.1'){
+            $url = 'https://api.map.baidu.com/location/ip?ak=' .$ak . '&coor=bd09ll';
+        }else {
+            $url = 'https://api.map.baidu.com/location/ip?ak=' .$ak. '&ip='.$cip . '&coor=bd09ll';
+        }
+        $address_data = file_get_contents($url);
+        $json_data = json_decode($address_data);
+        return new JsonResponse($json_data);
+
 
 //        if(!empty($_SERVER["HTTP_CLIENT_IP"])){
 //            $cip = $_SERVER["HTTP_CLIENT_IP"];
