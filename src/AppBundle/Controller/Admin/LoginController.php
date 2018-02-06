@@ -167,39 +167,22 @@ class LoginController extends APIResponseGenerator
         $cip =  preg_match ( '/[\d\.]{7,15}/', $ip, $matches ) ? $matches [0] : '';
 
         $ak = 'SQ5dEOZP2tTj4apHNGQ4IsgoG2Y7qv54';
+//        if ($cip == '127.0.0.1'){
+//            $url = 'https://api.map.baidu.com/location/ip?ak=' .$ak . '&coor=bd09ll';
+//        }else {
+//            $url = 'https://api.map.baidu.com/location/ip?ak=' .$ak. '&ip='.$cip . '&coor=bd09ll';
+//        }
+//        $address_data = file_get_contents($url);
+//        $json_data = json_decode($address_data);
+//        return new JsonResponse($json_data);
+
         if ($cip == '127.0.0.1'){
             $url = 'https://api.map.baidu.com/location/ip?ak=' .$ak . '&coor=bd09ll';
         }else {
-            $url = 'https://api.map.baidu.com/location/ip?ak=' .$ak. '&ip='.$cip . '&coor=bd09ll';
+            $url = 'http://ip.taobao.com/service/getIpInfo.php?ip=' . $cip;
         }
         $address_data = file_get_contents($url);
         $json_data = json_decode($address_data);
         return new JsonResponse($json_data);
-
-
-//        if(!empty($_SERVER["HTTP_CLIENT_IP"])){
-//            $cip = $_SERVER["HTTP_CLIENT_IP"];
-//        }
-//        else if(!empty($_SERVER["HTTP_X_FORWARDED_FOR"])){
-//            $cip = $_SERVER["HTTP_X_FORWARDED_FOR"];
-//        }
-//        else if(!empty($_SERVER["REMOTE_ADDR"])){
-//            $cip = $_SERVER["REMOTE_ADDR"];
-//        }
-//        else{
-//            $cip = '';
-//        }
-//        preg_match("/[\d\.]{7,15}/", $cip, $cips);
-//        $cip = isset($cips[0]) ? $cips[0] : 'unknown';
-//        unset($cips);
-//        $ak = 'SQ5dEOZP2tTj4apHNGQ4IsgoG2Y7qv54';
-//        $url = 'https://api.map.baidu.com/location/ip?ak=' .$ak. '&ip='.$cip . '&coor=bd09ll';
-//        $ch = curl_init();
-//        curl_setopt($ch, CURLOPT_URL, $url);
-//        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-//        $output = curl_exec($ch);
-//        $json_data = json_decode($output);
-//        return new JsonResponse($json_data);
-
     }
 }
