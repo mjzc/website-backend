@@ -120,7 +120,7 @@ class LoginController extends APIResponseGenerator
         $imgType = $_FILES['file']['type'];
         $imgSize = $_FILES['file']['size'];
         $isMove = false;
-        $upload_path = $this->getParameter('upload_path');
+        $upload_path = '/home/webmaster/git_projects/aoyi-blog-admin-api/web/Resources/blogHeadImg/';
         if (!in_array($imgType,$type)) {
             return new JsonResponse(['code' => '400', 'msg' => '上传的图片类型错误']);
         }
@@ -140,9 +140,8 @@ class LoginController extends APIResponseGenerator
         // 判断图片是否存在
         if (!file_exists($upload_path.$_FILES['file']['name'])) {
             var_dump(1);
-            $isMove = move_uploaded_file($_FILES["file"]["tmp_name"],'/home/webmaster/git_projects/aoyi-blog-admin-api/web／' . $upload_path.'/'.$_FILES['file']['name']);
+            $isMove = move_uploaded_file($_FILES['file']['tmp_name'],$upload_path . $_FILES['file']['name']);
         }
-        var_dump($upload_path.'/'.$_FILES['file']['name']);
         // 判断文件是否保存
         if($isMove) {
             return $this->generateResponseData(APIResponseCode::CODE_SUCCESS);
