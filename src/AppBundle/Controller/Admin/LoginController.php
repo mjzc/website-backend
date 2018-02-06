@@ -147,7 +147,7 @@ class LoginController extends APIResponseGenerator
         if($isMove) {
             return $this->generateResponseData(APIResponseCode::CODE_SUCCESS);
         }else{
-            return $this->generateResponseData(APIResponseCode::CODE_AUTH_INFO_INVALID);
+            return $this->generateResponseData(APIResponseCode::CODE_INTERNAL_SERVER_ERROR);
         }
     }
     /**
