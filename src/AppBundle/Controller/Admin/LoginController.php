@@ -147,42 +147,4 @@ class LoginController extends APIResponseGenerator
             return new JsonResponse(['code' => '400', 'msg' => '请重新上传']);
         }
     }
-    /**
-     * 获取地址
-     * @Route("/web_getAddress")
-     * @Method("POST")
-     */
-    public function getAddressByip ()
-    {
-
-        if(getenv('HTTP_CLIENT_IP') && strcasecmp(getenv('HTTP_CLIENT_IP'), 'unknown')) {
-            $ip = getenv('HTTP_CLIENT_IP');
-        } elseif(getenv('HTTP_X_FORWARDED_FOR') && strcasecmp(getenv('HTTP_X_FORWARDED_FOR'), 'unknown')) {
-            $ip = getenv('HTTP_X_FORWARDED_FOR');
-        } elseif(getenv('REMOTE_ADDR') && strcasecmp(getenv('REMOTE_ADDR'), 'unknown')) {
-            $ip = getenv('REMOTE_ADDR');
-        } elseif(isset($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] && strcasecmp($_SERVER['REMOTE_ADDR'], 'unknown')) {
-            $ip = $_SERVER['REMOTE_ADDR'];
-        }
-        $cip =  preg_match ( '/[\d\.]{7,15}/', $ip, $matches ) ? $matches [0] : '';
-
-        $ak = 'SQ5dEOZP2tTj4apHNGQ4IsgoG2Y7qv54';
-//        if ($cip == '127.0.0.1'){
-//            $url = 'https://api.map.baidu.com/location/ip?ak=' .$ak . '&coor=bd09ll';
-//        }else {
-//            $url = 'https://api.map.baidu.com/location/ip?ak=' .$ak. '&ip='.$cip . '&coor=bd09ll';
-//        }
-//        $address_data = file_get_contents($url);
-//        $json_data = json_decode($address_data);
-//        return new JsonResponse($json_data);
-
-        if ($cip == '127.0.0.1'){
-            $url = 'https://api.map.baidu.com/location/ip?ak=' .$ak . '&coor=bd09ll';
-        }else {
-            $url = 'http://ip.taobao.com/service/getIpInfo.php?ip=' . $cip;
-        }
-        $address_data = file_get_contents($url);
-        $json_data = json_decode($address_data);
-        return new JsonResponse($json_data);
-    }
 }
