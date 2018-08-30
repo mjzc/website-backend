@@ -20,7 +20,8 @@ class SoupController  extends Controller
     public function addSoup (Request $request)
     {
         $title = $request->get('title');
-        $content =$request->get('content');
+        $content = $request->get('content');
+        $img = $request->get('img');
 
         if (!isset($title) || !isset($content)) {
             return new JsonResponse(['code' => '40030', 'mag' => '内容不完整']);
@@ -28,10 +29,11 @@ class SoupController  extends Controller
 
         $time = time();
         $em = $this->getDoctrine()->getManager();
-        $soup = new Soup(null, $title, $content, $time);
+        $soup = new Soup(null, $title, $content, $time, $img);
         $soup->setTitle($title);
         $soup->setContent($content);
         $soup->setCreateTime($time);
+        $soup->setImgLink($img);
         $em->persist($soup);
         $em->flush();
         return new JsonResponse(['code' => '200', 'mag' => 'success']);
@@ -114,6 +116,8 @@ class SoupController  extends Controller
         $id = $request->get('id');
         $title = $request->get('title');
         $content = $request->get('content');
+        $img = $request->get('img');
+
         if (!isset($id)) {
             return new JsonResponse(['code' => '40030', 'mag' => 'id错误']);
         }
@@ -125,6 +129,7 @@ class SoupController  extends Controller
         $soup->setTitle($title);
         $soup->setCreateTime(time());
         $soup->setContent($content);
+        $soup->setImgLink($img);
         $em->flush();
         return new JsonResponse(['code' => '200']);
     }

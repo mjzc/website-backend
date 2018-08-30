@@ -76,7 +76,11 @@ class LoginController extends APIResponseGenerator
         if (is_null($res)) {
             return $this->generateResponseData(APIResponseCode::CODE_AUTH_INFO_INVALID);
         }
-        $imgSrc = 'http://aoyi.zeroyc.me/aoyi-blog-admin-api/'.$this->getParameter('upload_path').'/'.$res->getBlogHeadImg();
+        if ($_SERVER['SERVER_NAME'] == $this->getParameter('database_host')) {
+            $imgSrc = 'http://127.0.0.1:8000/'.$this->getParameter('upload_path').'/'.$res->getBlogHeadImg();
+        } else {
+            $imgSrc = 'http://aoyi.zeroyc.me/aoyi-blog-admin-api/'.$this->getParameter('upload_path').'/'.$res->getBlogHeadImg();
+        }
         $res->setBlogHeadImg($imgSrc);
         return new JsonResponse($res);
     }
@@ -115,12 +119,16 @@ class LoginController extends APIResponseGenerator
      */
     public function uploadImg ()
     {
-        $type = ['image/png','image/jpge','image/jpg'];
+        $type = ['image/png','image/jpeg','image/jpg'];
         $size = 2 * 1024 *1024;
         $imgType = $_FILES['file']['type'];
         $imgSize = $_FILES['file']['size'];
         $isMove = false;
-        $upload_path = '/home/webmaster/git_projects/aoyi-blog-admin-api/web/Resources/blogHeadImg/';
+        if ($_SERVER['SERVER_NAME'] == $this->getParameter('database_host')) {
+            $upload_path = 'Resources/blogHeadImg/';
+        } else {
+            $upload_path = '/home/webmaster/git_projects/aoyi-blog-admin-api/web/Resources/blogHeadImg/';
+        }
         if (!in_array($imgType,$type)) {
             return new JsonResponse(['code' => '400', 'msg' => '上传的图片类型错误']);
         }

@@ -42,13 +42,20 @@ class Soup implements \JsonSerializable
      */
     private $createTime;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="img_link", type="string", length=255)
+     */
+    private $imgLink;
 
-    public function __construct($id, $title, $content, $createTime)
+    public function __construct($id, $title, $content, $createTime, $imgLink)
     {
         $this->id = $id;
         $this->title = $title;
         $this->content = $content;
         $this->createTime = $createTime;
+        $this->imgLink = $imgLink;
     }
     public function jsonSerialize()
     {
@@ -56,7 +63,8 @@ class Soup implements \JsonSerializable
             'id' => $this->id,
             'title' => $this->title,
             'content' => $this->content,
-            'createTime' => $this->createTime
+            'createTime' => $this->createTime,
+            'imgLink' => $this->imgLink
         );
     }
 
@@ -140,6 +148,30 @@ class Soup implements \JsonSerializable
     public function getCreateTime()
     {
         return $this->createTime;
+    }
+
+    /**
+     * Set imgLink
+     *
+     * @param string $imgLink
+     *
+     * @return Soup
+     */
+    public function setImgLink($imgLink)
+    {
+        $this->imgLink = $imgLink;
+
+        return $this;
+    }
+
+    /**
+     * Get imgLink
+     *
+     * @return string
+     */
+    public function getimgLink()
+    {
+        return $this->imgLink;
     }
 }
 

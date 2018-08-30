@@ -103,7 +103,7 @@ class Uploader
             return;
         }
 
-
+var_dump($dirname);
         //创建目录失败
         if (!file_exists($dirname) && !mkdir($dirname, 0777, true)) {
             $this->stateInfo = $this->getStateInfo("ERROR_CREATE_DIR");
@@ -294,11 +294,16 @@ class Uploader
     {
         $fullname = $this->fullName;
 //            $rootPath = $_SERVER['DOCUMENT_ROOT'];
-//        $rootPath = dirname(__FILE__) . '/../../Resources/';
-        $rootPath='/home/webmaster/git_projects/aoyi-blog-admin-api/web';
-        if (substr($fullname, 0, 1) != '/') {
-            $fullname = '/' . $fullname;
+        if ($_SERVER['SERVER_NAME'] == '127.0.0.1') {
+            $rootPath = '../../';
+
+        } else {
+            $rootPath ='/home/webmaster/git_projects/aoyi-blog-admin-api/web';
+            if (substr($fullname, 0, 1) != '/') {
+                $fullname = '/' . $fullname;
+            }
         }
+
         return $rootPath . $fullname;
     }
     /**
