@@ -45,7 +45,7 @@ class Soup implements \JsonSerializable
     /**
      * @var string
      *
-     * @ORM\Column(name="img_link", type="string", length=255)
+     * @ORM\Column(name="img_link", type="text")
      */
     private $imgLink;
 
