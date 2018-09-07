@@ -61,8 +61,6 @@ class SoupRepository extends \Doctrine\ORM\EntityRepository
       $query->setFirstResult(intval($pageNum - 1) * $pageSize)
             ->setMaxResults($pageSize);
       $list = $query->getArrayResult();
-      $counts = count($allList);
-      $res = array("list" => $list, "counts" => $counts);
-      return $res;
+      return $list;
     }
 }

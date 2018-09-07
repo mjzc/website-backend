@@ -40,18 +40,25 @@ class SoupController  extends Controller
     }
 
     /**
-     * 获取全部鸡汤
+     * 获取鸡汤
      * @Route("/web_getSoupList")
      * @Method("POST")
      */
     public function getSoupList (Request $request)
     {
+        $searchStr = $request->get('searchStr');
         $pageNum = $request->get('pageNum');
         $pageSize = $request->get('pageSize');
-        $res = $this->getDoctrine()->getRepository('AppBundle:Soup')->getAllSoup($pageNum, $pageSize);
-        $all = $this->getDoctrine()->getRepository('AppBundle:Soup')->findAll();
-        $count = count($all);
-        return new JsonResponse(['code' => '200', 'list' => $res, 'counts' => $count]);
+        if (!isset($searchStr) || $searchStr == '') {
+            // 获取所有鸡汤
+            $res = $this->getDoctrine()->getRepository('AppBundle:Soup')->getAllSoup($pageNum, $pageSize);
+            $all = $this->getDoctrine()->getRepository('AppBundle:Soup')->findAll();
+            $count = count($all);
+            return new JsonResponse(['code' => '200', 'list' => $res, 'counts' => $count]);
+        }
+        $res = $this->getDoctrine()->getRepository('AppBundle:Soup')->searchSoupByTitle($searchStr, $pageNum, $pageSize);
+        $counts = count($res);
+        return new JsonResponse(['code' => '200','counts' => $counts, 'list' => $res]);
     }
 
     /**
@@ -70,27 +77,6 @@ class SoupController  extends Controller
         return new JsonResponse(['code' => '200', 'counts' => $res]);
     }
 
-    /**
-     * 查询数据
-     * @Route("/web_searchSoup")
-     * @Method("POST")
-     */
-    public function searchSoup (Request $request)
-    {
-
-        $searchStr = $request->get('searchStr');
-        $pageNum = $request->get('pageNum');
-        $pageSize = $request->get('pageSize');
-        if (!isset($searchStr) || $searchStr == '') {
-            $res = $this->getDoctrine()->getRepository('AppBundle:Soup')->getAllSoup($pageNum, $pageSize);
-            $all = $this->getDoctrine()->getRepository('AppBundle:Soup')->findAll();
-            $count = count($all);
-            return new JsonResponse(['code' => '200', 'list' => $res, 'counts' => $count]);
-        }
-        $res = $this->getDoctrine()->getRepository('AppBundle:Soup')->searchSoupByTitle($searchStr, $pageNum, $pageSize);
-        $res['code'] = '200';
-        return new JsonResponse($res);
-    }
     /**
      * 根据ID查询数据
      * @Route("/web_getSoupDetail")

@@ -16,23 +16,26 @@ class ArticleController extends Controller
 {
 
     /**
-     * 查询所有文章
+     * 文章查询
      * @Route("/web_getArticleList")
      * @Method("POST")
      */
-    public function getArticlesListAction(Request $request)
+    public function searchArticleAction (Request $request)
     {
+        $searchStr = $request->get('searchStr');
         $pageNum = $request->get('pageNum');
         $pageSize = $request->get('pageSize');
-        $list = $this->getDoctrine()->getRepository('AppBundle:Articles')->getAllArticles($pageNum, $pageSize);
-        $all = $this->getDoctrine()->getRepository('AppBundle:Articles')->findAll();
-        $counts = count($all);
+        if (!isset($searchStr) || $searchStr == '') {
+            // 查询所有文章
+            $res = $this->getDoctrine()->getRepository('AppBundle:Articles')->getAllArticles($pageNum, $pageSize);
+            $all = $this->getDoctrine()->getRepository('AppBundle:Articles')->findAll();
+            $counts = count($all);
+            return new JsonResponse(['code' => 200, 'counts' => $counts, 'list' => $res]);
+        }
 
-        return new JsonResponse([
-            'code' => '200',
-            'counts' => $counts,
-            'list' => $list
-        ]);
+        $res = $this->getDoctrine()->getRepository('AppBundle:Articles')->searchArticlesByTitleClass($searchStr, $pageNum, $pageSize);
+        $counts = count($res);
+        return new JsonResponse(['code' => '200','counts' => $counts, 'list' => $res]);
     }
 
     /**
@@ -89,27 +92,6 @@ class ArticleController extends Controller
         $em->persist($article);
         $em->flush();
         return new JsonResponse(['code' => '200', 'msg' => 'success']);
-    }
-
-    /**
-     * 文章筛选查询
-     * @Route("/web_searchArticles")
-     * @Method("POST")
-     */
-    public function searchArticleAction (Request $request)
-    {
-
-        $searchStr = $request->get('searchStr');
-        $pageNum = $request->get('pageNum');
-        $pageSize = $request->get('pageSize');
-        if (!isset($searchStr) || $searchStr == '') {
-            $res = $this->getDoctrine()->getRepository('AppBundle:Articles')->getAllArticles($pageNum, $pageSize);
-            return new JsonResponse(['code' => 200, 'list' => $res]);
-        }
-
-        $res = $this->getDoctrine()->getRepository('AppBundle:Articles')->searchArticlesByTitleClass($searchStr, $pageNum, $pageSize);
-        $counts = count($res);
-        return new JsonResponse(['code' => '200','counts' => $counts, 'list' => $res]);
     }
 
     /**
