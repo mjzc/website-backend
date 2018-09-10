@@ -36,9 +36,9 @@ class Singer
     private $headImg;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="create_time", type="datetime")
+     * @ORM\Column(name="create_time", type="string")
      */
     private $createTime;
 
@@ -104,7 +104,7 @@ class Singer
     /**
      * Set createTime
      *
-     * @param \DateTime $createTime
+     * @param string $createTime
      *
      * @return Singer
      */
@@ -118,7 +118,7 @@ class Singer
     /**
      * Get createTime
      *
-     * @return \DateTime
+     * @return string
      */
     public function getCreateTime()
     {

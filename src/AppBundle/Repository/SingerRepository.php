@@ -10,4 +10,61 @@ namespace AppBundle\Repository;
  */
 class SingerRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * 获取所有歌手
+     * @param $pageSize
+     * @param $pageNum
+     * @return $list
+     */
+    public function getAllSingers($pageNum = 1, $pageSize = 10)
+    {
+        $qb = $this->createQueryBuilder('singer');
+        $qb
+            ->select('singer.id', 'singer.name', 'singer.createTime')
+            ->orderBy('singer.createTime', 'desc')
+            ->setFirstResult((intval($pageNum) - 1) * $pageSize)
+            ->setMaxResults($pageSize);
+
+        $list = $qb->getQuery()->getArrayResult();
+        return $list;
+    }
+
+    /**
+     * 根据name查询
+     * @param $searchStr
+     * @param $pageSize
+     * @param $pageNum
+     * @return $list
+     */
+    public function searchSingers($searchStr, $pageNum, $pageSize)
+    {
+
+        $qb = $this->createQueryBuilder('singer');
+        $qb
+            ->select('singer.id', 'singer.name', 'singer.createTime')
+            ->where('singer.name like :searchStr')
+            ->orderBy('singer.createTime', 'desc')
+            ->setFirstResult((intval($pageNum) - 1) * $pageSize)
+            ->setMaxResults($pageSize)
+            ->setParameter('searchStr', "%{$searchStr}%");
+
+        $list = $qb->getQuery()->getArrayResult();
+        return $list;
+    }
+    /**
+     * 根据id查询
+     * @param id
+     * @return $list
+     */
+    public function getSingerById($id)
+    {
+        $qb = $this->createQueryBuilder('singer');
+        $qb
+            ->select('singer.id', 'singer.name', 'singer.createTime', 'singer.headImg')
+            ->where('singer.id = :id')
+            ->setParameter('id', $id);
+
+        $list = $qb->getQuery()->getArrayResult();
+        return  $list;
+    }
 }
