@@ -67,4 +67,18 @@ class SingerRepository extends \Doctrine\ORM\EntityRepository
         $list = $qb->getQuery()->getArrayResult();
         return  $list;
     }
+    /**
+     * 获取所有歌手
+     * @return $list
+     */
+    public function getSingers()
+    {
+        $qb = $this->createQueryBuilder('singer');
+        $qb
+            ->select('singer.id', 'singer.name')
+            ->orderBy('singer.createTime', 'desc');
+
+        $list = $qb->getQuery()->getArrayResult();
+        return $list;
+    }
 }
