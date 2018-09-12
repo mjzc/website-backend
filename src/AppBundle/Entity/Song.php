@@ -52,9 +52,16 @@ class Song
     /**
      * @var int
      *
-     * @ORM\Column(name="sing_id", type="integer")
+     * @ORM\Column(name="singer_id", type="integer")
      */
-    private $singId;
+    private $singerId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="create_time", type="string")
+     */
+    private $createTime;
 
 
     /**
@@ -164,27 +171,51 @@ class Song
     }
 
     /**
-     * Set singId
+     * Set singerId
      *
-     * @param integer $singId
+     * @param integer $singerId
      *
      * @return Song
      */
-    public function setSingId($singId)
+    public function setSingerId($singerId)
     {
-        $this->singId = $singId;
+        $this->singerId = $singerId;
 
         return $this;
     }
 
     /**
-     * Get singId
+     * Get singerId
      *
      * @return int
      */
-    public function getSingId()
+    public function getSingerId()
     {
-        return $this->singId;
+        return $this->singerId;
+    }
+
+    /**
+     * Set createTime
+     *
+     * @param string $createTime
+     *
+     * @return Song
+     */
+    public function setCreateTime($createTime)
+    {
+        $this->createTime = $createTime;
+
+        return $this;
+    }
+
+    /**
+     * Get createTime
+     *
+     * @return string
+     */
+    public function getCreateTime()
+    {
+        return $this->createTime;
     }
 }
 

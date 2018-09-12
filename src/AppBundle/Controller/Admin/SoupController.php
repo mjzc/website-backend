@@ -13,7 +13,7 @@ class SoupController  extends Controller
 {
 
     /**
-     * 添加一条鸡汤
+     * 添加鸡汤
      * @Route("/web_addSoup")
      * @Method("POST")
      */

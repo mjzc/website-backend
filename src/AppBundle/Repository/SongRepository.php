@@ -10,4 +10,78 @@ namespace AppBundle\Repository;
  */
 class SongRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * 获取所有歌手
+     * @param $pageSize
+     * @param $pageNum
+     * @return $list
+     */
+    public function getAllSong($pageNum = 1, $pageSize = 10)
+    {
+        $sql = 'SELECT c.id as singerId, c.name, a.id, a.songName, a.createTime 
+        FROM AppBundle:Song a, AppBundle:Singer c
+        WHERE a.singerId = c.id
+        ORDER BY a.createTime DESC';
+        $query = $this->getEntityManager()->createQuery($sql);
+        $list = $query
+            ->setFirstResult((intval($pageNum) - 1) * $pageSize)
+            ->setMaxResults($pageSize)
+            ->getArrayResult();
+        return $list;
+    }
+
+    /**
+     * 根据name查询
+     * @param $searchStr
+     * @param $pageSize
+     * @param $pageNum
+     * @return $list
+     */
+    public function searchSong($searchStr, $pageNum, $pageSize)
+    {
+
+        $sql = 'SELECT a.id, a.songName, a.createTime, c.name, c.id 
+        FROM AppBundle:Song a, AppBundle:Singer c 
+        WHERE c.id = a.singerId 
+        AND (c.name LIKE :searchStr OR a.songName LIKE :searchStr)
+        ORDER BY a.createTime DESC';
+        $query = $this->getEntityManager()->createQuery($sql);
+        $list = $query
+            ->setParameter(':searchStr','%'.$searchStr.'%')
+            ->setFirstResult((intval($pageNum) - 1) * $pageSize)
+            ->setMaxResults($pageSize)
+            ->getArrayResult();
+        return $list;
+    }
+    /**
+     * 删除数据
+     * @param ids
+     * @return array
+     */
+    public function delSongByIds ($ids)
+    {
+        $qb = $this->createQueryBuilder('p');
+        $query = $qb
+            ->delete()
+            ->where('p.id in (:ids)')
+            ->setParameter(':ids',$ids)
+            ->getQuery();
+        $res = $query->getResult();
+        return $res;
+    }
+    /**
+     * 获取所有歌手
+     * @return $list
+     */
+    public function getSong($id)
+    {
+        $qb = $this->createQueryBuilder('song');
+        $qb
+            ->select('song.id', 'song.songName', 'song.songImg','song.songUrl','song.lyric','song.singerId', 'song.createTime')
+            ->where('song.id = :id')
+            ->setParameter('id', $id)
+            ->orderBy('song.createTime', 'desc');
+        $list = $qb->getQuery()->getArrayResult();
+        return $list;
+    }
 }
