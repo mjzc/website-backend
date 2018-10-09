@@ -61,7 +61,7 @@ class MusicController extends Controller {
         if ($_SERVER['SERVER_NAME'] == $this->getParameter('database_host')) {
             $upload_path = 'Resources/music/';
         } else {
-            $upload_path = '/home/webmaster/git_projects/aoyi-blog-admin-api/web/Resources/music/';
+            $upload_path = '/home/webmaster/git_projects/backend/web/Resources/music/';
         }
         if (!in_array($imgType,$type)) {
             return new JsonResponse(['code' => '401', 'msg' => '上传的图片类型错误']);
