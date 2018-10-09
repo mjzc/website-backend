@@ -79,7 +79,7 @@ class LoginController extends APIResponseGenerator
         if ($_SERVER['SERVER_NAME'] == $this->getParameter('database_host')) {
             $imgSrc = 'http://127.0.0.1:8000/'.$this->getParameter('upload_path').'/'.$res->getBlogHeadImg();
         } else {
-            $imgSrc = 'https://www.mjiacc.cn/'.$this->getParameter('upload_path').'/'.$res->getBlogHeadImg();
+            $imgSrc = 'https://www.mjiacc.cn/backend/'.$this->getParameter('upload_path').'/'.$res->getBlogHeadImg();
         }
         $res->setBlogHeadImg($imgSrc);
         return new JsonResponse($res);
@@ -127,7 +127,7 @@ class LoginController extends APIResponseGenerator
         if ($_SERVER['SERVER_NAME'] == $this->getParameter('database_host')) {
             $upload_path = 'Resources/blogHeadImg/';
         } else {
-            $upload_path = '/home/webmaster/git_projects/web/Resources/blogHeadImg/';
+            $upload_path = '/home/webmaster/git_projects/my-web/website-backend/web/Resources/blogHeadImg/';
         }
         if (!in_array($imgType,$type)) {
             return new JsonResponse(['code' => '400', 'msg' => '上传的图片类型错误']);
