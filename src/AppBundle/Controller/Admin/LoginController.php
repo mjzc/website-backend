@@ -67,10 +67,12 @@ class LoginController extends APIResponseGenerator
      */
     public function getAuthorInfoById (Request $request)
     {
-        $id = $request->get('id');
-        if (!isset($id)) {
-            return $this->generateResponseData(APIResponseCode::CODE_AUTH_INFO_INVALID);
-        }
+//        $id = $request->get('id');
+          $id = 1;
+//        if (!isset($id)) {
+//            return $this->generateResponseData(APIResponseCode::CODE_AUTH_INFO_INVALID);
+//        }
+//        $res = $this->getDoctrine()->getRepository('AppBundle:Author')->find($id);
         $res = $this->getDoctrine()->getRepository('AppBundle:Author')->find($id);
 
         if (is_null($res)) {
@@ -92,7 +94,8 @@ class LoginController extends APIResponseGenerator
      */
     public function editAuthorInfoById (Request $request)
     {
-        $id = $request->get('id');
+//        $id = $request->get('id');
+        $id = 1;
         $blogName = $request->get('blogName');
         $blogIntro = $request->get('blogIntro');
         $imgurl = $request->get('blogHeadImg');
