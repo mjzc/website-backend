@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ebd89cdf-2878-484d-8cf6-746a06f3ac1d" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/Admin/LoginController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/Admin/LoginController.php" />
       <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/Admin/MusicController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/Admin/MusicController.php" />
     </list>
@@ -22,7 +21,7 @@
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Admin/MusicController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="226">
-              <caret line="63" column="64" lean-forward="false" selection-start-line="63" selection-start-column="64" selection-end-line="63" selection-end-column="64" />
+              <caret line="63" column="56" lean-forward="false" selection-start-line="63" selection-start-column="56" selection-end-line="63" selection-end-column="56" />
               <folding>
                 <element signature="e#46#72#0#PHP" expanded="true" />
               </folding>
@@ -30,11 +29,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ArticleController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ArticleController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Admin/ArticleController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="672">
-              <caret line="138" column="9" lean-forward="false" selection-start-line="138" selection-start-column="9" selection-end-line="138" selection-end-column="9" />
+            <state relative-caret-position="245">
+              <caret line="139" column="56" lean-forward="false" selection-start-line="139" selection-start-column="56" selection-end-line="139" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -44,7 +43,7 @@
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Admin/LoginController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="226">
-              <caret line="129" column="64" lean-forward="false" selection-start-line="129" selection-start-column="64" selection-end-line="129" selection-end-column="64" />
+              <caret line="129" column="56" lean-forward="false" selection-start-line="129" selection-start-column="56" selection-end-line="129" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -54,17 +53,17 @@
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Admin/SingerController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="226">
-              <caret line="67" column="41" lean-forward="false" selection-start-line="67" selection-start-column="41" selection-end-line="67" selection-end-column="41" />
+              <caret line="69" column="63" lean-forward="false" selection-start-line="69" selection-start-column="63" selection-end-line="69" selection-end-column="63" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SoupController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SoupController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Admin/SoupController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="67" column="7" lean-forward="true" selection-start-line="67" selection-start-column="7" selection-end-line="67" selection-end-column="7" />
+            <state relative-caret-position="226">
+              <caret line="72" column="58" lean-forward="false" selection-start-line="72" selection-start-column="58" selection-end-line="72" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -90,6 +89,9 @@
       <find>sing</find>
       <find>get_songlist</find>
       <find>aoyi</find>
+      <find>mjia</find>
+      <find>back</find>
+      <find>backend</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -108,8 +110,8 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Song.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/Admin/SoupController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Repository/SongRepository.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/Admin/LoginController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/Admin/MusicController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/Admin/LoginController.php" />
       </list>
     </option>
   </component>
@@ -256,12 +258,12 @@
       <workItem from="1536217235727" duration="24070000" />
       <workItem from="1536656261398" duration="1000" />
       <workItem from="1536656501225" duration="15556000" />
-      <workItem from="1538970786666" duration="1914000" />
+      <workItem from="1538970786666" duration="2397000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49949000" />
+    <option name="totallyTimeSpent" value="50432000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -629,10 +631,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Admin/SoupController.php">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Admin/MusicController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="67" column="7" lean-forward="true" selection-start-line="67" selection-start-column="7" selection-end-line="67" selection-end-column="7" />
+        <state relative-caret-position="226">
+          <caret line="63" column="56" lean-forward="false" selection-start-line="63" selection-start-column="56" selection-end-line="63" selection-end-column="56" />
+          <folding>
+            <element signature="e#46#72#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Admin/ArticleController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="139" column="56" lean-forward="false" selection-start-line="139" selection-start-column="56" selection-end-line="139" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Admin/LoginController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="129" column="56" lean-forward="false" selection-start-line="129" selection-start-column="56" selection-end-line="129" selection-end-column="56" />
           <folding />
         </state>
       </provider>
@@ -640,33 +660,15 @@
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Admin/SingerController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="226">
-          <caret line="67" column="41" lean-forward="false" selection-start-line="67" selection-start-column="41" selection-end-line="67" selection-end-column="41" />
+          <caret line="69" column="63" lean-forward="false" selection-start-line="69" selection-start-column="63" selection-end-line="69" selection-end-column="63" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Admin/MusicController.php">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Admin/SoupController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="226">
-          <caret line="63" column="64" lean-forward="false" selection-start-line="63" selection-start-column="64" selection-end-line="63" selection-end-column="64" />
-          <folding>
-            <element signature="e#46#72#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Admin/LoginController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="129" column="64" lean-forward="false" selection-start-line="129" selection-start-column="64" selection-end-line="129" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Admin/ArticleController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="672">
-          <caret line="138" column="9" lean-forward="false" selection-start-line="138" selection-start-column="9" selection-end-line="138" selection-end-column="9" />
+          <caret line="72" column="58" lean-forward="false" selection-start-line="72" selection-start-column="58" selection-end-line="72" selection-end-column="58" />
           <folding />
         </state>
       </provider>
